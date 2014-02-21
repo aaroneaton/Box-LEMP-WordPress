@@ -14,7 +14,7 @@ script: |
   sudo apt-get install nginx -y
 
   # Install grunt
-  npm install -g grunt-cli
+  sudo npm install -g grunt-cli
 
   # Nginx setup
   ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
