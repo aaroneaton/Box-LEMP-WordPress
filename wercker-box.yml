@@ -17,7 +17,8 @@ script: |
 
   # Nginx setup
   sudo ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
-  sudo ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx.conf
+  sudo ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx-wp-common.conf
+  sudo ln -sf config/nginx/sites/default.conf /etc/nginx/sites-enabled/default.conf
   ls -la /etc/nginx
   sudo service nginx restart
 
