@@ -1,6 +1,6 @@
 name: box-lemp-wordpress
 version: 0.0.1
-inherits: wercker/box-php@0.9.1
+inherits: wercker/php@1.0.2
 type: service
 platform: ubuntu@12.04
 description: Wercker box for LEMP and WordPress
