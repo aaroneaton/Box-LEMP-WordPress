@@ -18,6 +18,7 @@ script: |
   # Nginx setup
   sudo ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
   sudo ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx.conf
+  ls -la /etc/nginx
   sudo service nginx restart
 
   sudo service php5-fpm restart
