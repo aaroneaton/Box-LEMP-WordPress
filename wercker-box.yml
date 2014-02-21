@@ -33,6 +33,8 @@ script: |
   mkdir /srv/www/wordpress
   cd /srv/www/wordpress
   wp core download
-  wp core config --dbname=WERCKER_MYSQL_DATABASE --dbuser=WERCKER_MYSQL_USERNAME --dbpass=WERCKER_MYSQL_PASSWORD
+  wp core config --dbname=WERCKER_MYSQL_DATABASE --dbuser=WERCKER_MYSQL_USERNAME --dbpass=WERCKER_MYSQL_PASSWORD --extra-php <<PHP
+  define( 'WP_DEBUG', true);
+  PHP
   wp core install --url="local.wordpress.dev" --title="Wercker Test" --admin_user="admin" --admin_password="password" --admin_email="test@test.com"
   wp core version
