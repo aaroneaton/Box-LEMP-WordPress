@@ -13,9 +13,6 @@ script: |
   sudo apt-get update -y
   sudo apt-get install nginx -y
 
-  # Install grunt
-  sudo npm install -g grunt-cli
-
   # Nginx setup
   ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
   ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx.conf
