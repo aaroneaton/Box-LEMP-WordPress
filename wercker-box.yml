@@ -1,0 +1,23 @@
+name: box-lemp-wordpress
+version: 0.0.1
+inherits: wercker/box-php
+type: service
+platform: ubuntu@12.04
+description: Wercker box for LEMP and WordPress
+keywords:
+  - lemp
+  - wordpress
+packages:
+  - mysql-server
+script: |
+  sudo apt-get update -y
+  sudo apt-get install nginx -y
+
+  # Install grunt
+  npm install -g grunt-cli
+
+  # Nginx setup
+  ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
+  ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx.conf
+  sudo service nginx restart
+
