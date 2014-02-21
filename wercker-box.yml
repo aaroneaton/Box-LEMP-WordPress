@@ -14,8 +14,8 @@ script: |
   sudo apt-get install nginx -y
 
   # Nginx setup
-  ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
-  ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx.conf
+  sudo ln -sf config/nginx/nginx.conf /etc/nginx/nginx.conf
+  sudo ln -sf config/nginx/nginx-wp-common.conf /etc/nginx/nginx.conf
   sudo service nginx restart
 
   sudo service php5-fpm restart
@@ -24,7 +24,7 @@ script: |
   git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
   cd /srv/www/wp-cli
   composer install
-  ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
+  sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
 
   # Install WordPress
   mkdir /srv/www/wordpress
