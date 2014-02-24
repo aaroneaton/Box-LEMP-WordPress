@@ -10,37 +10,37 @@ keywords:
 packages:
   - mysql-server
 script: |
-  sudo su root
-  apt-get update -y
-  apt-get install nginx -y
+  sudo apt-get update -y
+  sudo apt-get install nginx -y
   pwd
   ls -la
 
   # Nginx setup
-  cp -f config/nginx/nginx.conf /etc/nginx/nginx.conf
-  cp -f config/nginx/nginx-wp-common.conf /etc/nginx/nginx-wp-common.conf
-  cp -f config/nginx/sites/default.conf /etc/nginx/sites-enabled/default.conf
+  sudo cp -f config/nginx/nginx.conf /etc/nginx/nginx.conf
+  sudo cp -f config/nginx/nginx-wp-common.conf /etc/nginx/nginx-wp-common.conf
+  sudo cp -f config/nginx/sites/default.conf /etc/nginx/sites-enabled/default.conf
   cd /etc/nginx
-  chmod 644 nginx.conf nginx-wp-common.conf sites-enabled/default.conf
+  sudo chmod 644 nginx.conf nginx-wp-common.conf sites-enabled/default.conf
   ls -la /etc/nginx
-  service nginx restart
+  sudo service nginx restart
   whoami
 
   # Install wp-cli
-  git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
+  sudo git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
+  sudo chown -R ubuntu:ubuntu /srv/www/wp-cli
   cd /srv/www/wp-cli
   composer install
-  ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
+  sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
 
   # Create server user
-  useradd www-data
-  groupadd www-data
+  sudo useradd www-data
+  sudo groupadd www-data
 
   # Install WordPress
-  mkdir /srv/www/wordpress
+  sudo mkdir /srv/www/wordpress
   cd /srv/www/wordpress
-  chown -R www-data /srv/www
-  chgrp -R www-data /srv/www
+  sudo chown -R www-data /srv/www
+  sudo chgrp -R www-data /srv/www
   # Add www-data user and group
   # Maybe look at using new-site script on roark
   wp core download
@@ -51,11 +51,9 @@ script: |
   wp core version
 
   # Fix up the permissions
-  chown -R www-data .
-  chgrp -R www-data .
-  find . -type d -exec chmod 775 {} \;
-  find . -type f -exec chmod 664 {} \;
+  sudo chown -R www-data .
+  sudo chgrp -R www-data .
+  sudo find . -type d -exec chmod 775 {} \;
+  sudo find . -type f -exec chmod 664 {} \;
 
-  service nginx restart
-  exit
-  whoami
+  sudo service nginx restart
