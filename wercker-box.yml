@@ -23,6 +23,7 @@ script: |
   sudo chmod 644 nginx.conf nginx-wp-common.conf sites-enabled/default.conf
   ls -la /etc/nginx
   sudo service nginx restart
+  whoami
 
   # Install wp-cli
   sudo git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
@@ -33,6 +34,8 @@ script: |
   # Install WordPress
   sudo mkdir /srv/www/wordpress
   cd /srv/www/wordpress
+  chown -R www-data /srv/www
+  chgrp -R www-data /srv/www
   # Add www-data user and group
   # Maybe look at using new-site script on roark
   wp core download
@@ -43,9 +46,9 @@ script: |
   wp core version
 
   # Fix up the permissions
-  chown -R www-data .
-  chgrp -R www-data .
-  find . -type d -exec chmod 775 {} \;
-  find . -type f -exec chmod 664 {} \;
+  sudo chown -R www-data .
+  sudo chgrp -R www-data .
+  sudo find . -type d -exec chmod 775 {} \;
+  sudo find . -type f -exec chmod 664 {} \;
 
   sudo service nginx restart
