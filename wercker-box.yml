@@ -32,10 +32,6 @@ script: |
   composer install
   sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
 
-  # Create server user
-  sudo useradd www-data
-  sudo groupadd www-data
-
   # Install WordPress
   sudo mkdir /srv/www/wordpress
   cd /srv/www/wordpress
