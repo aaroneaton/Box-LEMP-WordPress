@@ -32,15 +32,12 @@ script: |
   composer install
   sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
 
-  # Install WordPress
+  # Download WordPress
   sudo mkdir /srv/www/wordpress
   cd /srv/www/wordpress
   sudo chown -R ubuntu /srv/www
   sudo chgrp -R ubuntu /srv/www
   wp core download
-  wp core config --dbname=WERCKER_MYSQL_DATABASE --dbuser=WERCKER_MYSQL_USERNAME --dbpass=WERCKER_MYSQL_PASSWORD
-  wp core install --url="local.wordpress.dev" --title="Wercker Test" --admin_user="admin" --admin_password="password" --admin_email="test@test.com"
-  wp core version
 
   # Fix up the permissions
   sudo chown -R ubuntu .
@@ -49,3 +46,6 @@ script: |
   sudo find . -type f -exec chmod 664 {} \;
 
   sudo service nginx restart
+  which npm
+  which bower
+  which grunt
