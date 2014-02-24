@@ -35,20 +35,16 @@ script: |
   # Install WordPress
   sudo mkdir /srv/www/wordpress
   cd /srv/www/wordpress
-  sudo chown -R www-data /srv/www
-  sudo chgrp -R www-data /srv/www
-  # Add www-data user and group
-  # Maybe look at using new-site script on roark
+  sudo chown -R ubuntu /srv/www
+  sudo chgrp -R ubuntu /srv/www
   wp core download
-  wp core config --dbname=WERCKER_MYSQL_DATABASE --dbuser=WERCKER_MYSQL_USERNAME --dbpass=WERCKER_MYSQL_PASSWORD --extra-php <<PHP
-  define( 'WP_DEBUG', true);
-  PHP
+  wp core config --dbname=WERCKER_MYSQL_DATABASE --dbuser=WERCKER_MYSQL_USERNAME --dbpass=WERCKER_MYSQL_PASSWORD
   wp core install --url="local.wordpress.dev" --title="Wercker Test" --admin_user="admin" --admin_password="password" --admin_email="test@test.com"
   wp core version
 
   # Fix up the permissions
-  sudo chown -R www-data .
-  sudo chgrp -R www-data .
+  sudo chown -R ubuntu .
+  sudo chgrp -R ubuntu .
   sudo find . -type d -exec chmod 775 {} \;
   sudo find . -type f -exec chmod 664 {} \;
 
