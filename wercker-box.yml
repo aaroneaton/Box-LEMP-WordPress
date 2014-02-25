@@ -1,5 +1,5 @@
 name: box-lemp-wordpress
-version: 0.0.3
+version: 0.0.4
 inherits: wercker/php@1.0.2
 type: main
 platform: ubuntu@12.04
@@ -36,6 +36,7 @@ script: |
   cd /srv/www/wp-cli
   composer install
   sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
+  sudo chown ubuntu:ubuntu /usr/local/bin/wp
 
   # Install utilities
   sudo npm install -g grunt-cli
