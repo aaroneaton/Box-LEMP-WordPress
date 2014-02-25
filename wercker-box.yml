@@ -34,10 +34,12 @@ script: |
 
   # Download WordPress
   sudo mkdir /srv/www/wordpress
-  cd /srv/www/wordpress
+  cd /srv/www
   sudo chown -R ubuntu /srv/www
   sudo chgrp -R ubuntu /srv/www
-  wp core download
+  curl -O http://wordpress.org/latest.tar.gz
+  tar -xvf latest.tar.gz
+  rm latest.tar.gz
 
   # Fix up the permissions
   sudo chown -R ubuntu .
