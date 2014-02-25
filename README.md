@@ -18,6 +18,9 @@ This box comes with almost everything you need to test and deploy your WordPress
 WordPress is installed in `/srv/www/wordpress`. In your project's `wercker.yml`, copy your project files to the proper location.
 
 ## Changelog
+### 0.0.5
+- Fixed more permissions issues with wp-cli
+
 ### 0.0.4
 - Fixed permissions issue with wp-cli
 
