@@ -1,5 +1,5 @@
 name: box-lemp-wordpress
-version: 0.0.2
+version: 0.0.3
 inherits: wercker/php@1.0.2
 type: main
 platform: ubuntu@12.04
