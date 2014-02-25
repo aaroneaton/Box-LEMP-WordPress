@@ -47,5 +47,8 @@ script: |
   sudo find . -type d -exec chmod 775 {} \;
   sudo find . -type f -exec chmod 664 {} \;
 
+  npm --version
+  node --version
+  sudo npm config set registry http://registry.npmjs.org/
   sudo npm install -g grunt-cli
   sudo npm install -g bower
