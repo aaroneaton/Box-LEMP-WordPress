@@ -11,7 +11,10 @@ packages:
   - mysql-server
 script: |
   sudo apt-get update -y
-  sudo apt-get install nginx -y
+  sudo apt-get install nginx python-software-properties python g++ make -y
+  sudo add-apt-repository ppa:chris-lea/node.js
+  sudo apt-get update -y
+  sudo apt-get install nodejs -y
   pwd
   ls -la
 
@@ -47,8 +50,6 @@ script: |
   sudo find . -type d -exec chmod 775 {} \;
   sudo find . -type f -exec chmod 664 {} \;
 
-  npm --version
-  node --version
   sudo npm config set registry http://registry.npmjs.org/
   sudo npm install -g grunt-cli
   sudo npm install -g bower
