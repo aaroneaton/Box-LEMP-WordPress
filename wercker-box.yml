@@ -50,11 +50,8 @@ script: |
 
   # Download WordPress
   mkdir /srv/www/wordpress
-  cd /srv/www
-  wp help
-  curl -O http://wordpress.org/latest.tar.gz
-  tar -xvf latest.tar.gz
-  rm latest.tar.gz
+  cd /srv/www/wordpress
+  wp core download
 
   # Fix up the permissions
   sudo chown -R ubuntu .
