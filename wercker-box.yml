@@ -1,5 +1,5 @@
 name: box-lemp-wordpress
-version: 0.0.7
+version: 0.0.8
 inherits: wercker/php@1.0.2
 type: main
 platform: ubuntu@12.04
@@ -29,14 +29,19 @@ script: |
   sudo chmod 644 nginx.conf nginx-wp-common.conf sites-enabled/default.conf
   sudo service nginx restart
 
+  # Setup folders
+  sudo mkdir -p /srv/www
+  sudo chown ubuntu /srv/www
+  sudo chgrp ubuntu /srv/www
+
   # Install wp-cli
-  sudo git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
-  sudo chown -R ubuntu:ubuntu /srv/www/wp-cli
+  git clone git://github.com/wp-cli/wp-cli.git /srv/www/wp-cli
   sudo chmod +x /srv/www/wp-cli/bin/wp
   cd /srv/www/wp-cli
   composer install
   sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
-  sudo chown ubuntu:ubuntu /usr/local/bin/wp
+  sudo chown ubuntu /usr/local/bin/wp
+  sudo chgrp ubuntu /usr/local/bin/wp
   sudo chmod +x /usr/local/bin/wp
 
   # Install utilities
@@ -44,10 +49,9 @@ script: |
   sudo npm install -g bower
 
   # Download WordPress
-  sudo mkdir /srv/www/wordpress
+  mkdir /srv/www/wordpress
   cd /srv/www
-  sudo chown -R ubuntu /srv/www
-  sudo chgrp -R ubuntu /srv/www
+  wp help
   curl -O http://wordpress.org/latest.tar.gz
   tar -xvf latest.tar.gz
   rm latest.tar.gz
