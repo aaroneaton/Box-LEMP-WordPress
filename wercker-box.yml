@@ -34,9 +34,9 @@ script: |
   sudo chown -R ubuntu:ubuntu /srv/www/wp-cli
   cd /srv/www/wp-cli
   composer install
-  sudo chmod +x /srv/www/wp-cli/bin/wp
   sudo ln -sf /srv/www/wp-cli/bin/wp /usr/local/bin/wp
   sudo chown ubuntu:ubuntu /usr/local/bin/wp
+  sudo chmod +x /usr/local/bin/wp
 
   # Install utilities
   sudo npm install -g grunt-cli
